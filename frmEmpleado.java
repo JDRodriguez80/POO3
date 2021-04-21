@@ -1,8 +1,14 @@
+
 package mx.jdr80.nomina;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -40,16 +46,18 @@ public class frmEmpleado extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnLoad1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
 
-        jPanel2.setBackground(new java.awt.Color(20, 54, 66));
+        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
 
         txtaArchivo.setColumns(20);
         txtaArchivo.setForeground(new java.awt.Color(0, 0, 0));
         txtaArchivo.setRows(5);
         txtaArchivo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Archivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Montserrat ExtraLight", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        txtaArchivo.setFocusable(false);
         jScrollPane1.setViewportView(txtaArchivo);
 
         jLabel1.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 36)); // NOI18N
@@ -60,7 +68,7 @@ public class frmEmpleado extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/jdr80/nomina/imgs/icons8_form_100px.png"))); // NOI18N
 
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/jdr80/nomina/imgs/icons8_opened_folder_50px.png"))); // NOI18N
-        btnLoad.setText("Load File");
+        btnLoad.setText("Cargar Archivo");
         btnLoad.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         btnLoad.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
@@ -108,21 +116,34 @@ public class frmEmpleado extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("R.F.C del empleado:");
 
+        btnLoad1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/jdr80/nomina/imgs/icons8_opened_folder_50px.png"))); // NOI18N
+        btnLoad1.setText("Guardar datos");
+        btnLoad1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        btnLoad1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnLoad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoad1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtRFC)
-                    .addComponent(txtNombre)
-                    .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtRFC)
+                            .addComponent(txtNombre)
+                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnLoad1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -160,10 +181,12 @@ public class frmEmpleado extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnLoad1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoad)
-                .addGap(38, 38, 38))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,7 +204,6 @@ public class frmEmpleado extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {                                        
-    // se usa la clase JFileChooser para poder seleccionar el archivo 
     JFileChooser fc= new JFileChooser();//creacion del objeto de la clase JFileChooser
     fc.showOpenDialog(null);//abriendo la ventana de dialogo para la seleccion del archivo
     File archivo =fc.getSelectedFile();//creando el objeto de la clase File y se le pasa lo que tiene el objeto filechooser con el metodo getSelectedFile
@@ -228,6 +250,30 @@ public class frmEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                      
 
+    private void btnLoad1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+        
+        try {
+            //Creando el objeto bw de la clase  BufferedWriter Y se le pasa como parametro la ruta donde se guardara el archivo
+            BufferedWriter bw = new BufferedWriter(new FileWriter ("C:\\Users\\dario\\Documents\\Universidad\\4to\\DPO3\\U1\\Nomina\\src\\archivo.txt")); 
+            //se le pasa lo contenido en la caja de texto para que lo imprima en el archivo txt
+            bw.write(txtIdEmpleado.getText()+"\n");
+            bw.write(txtNombre.getText()+"\n");
+            bw.write(txtRFC.getText()+"\n");
+            bw.close(); //se cierra el stream
+            
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(frmEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+    }                                        
+
     /**
      * @param args the command line arguments
      */
@@ -265,6 +311,7 @@ public class frmEmpleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnLoad;
+    private javax.swing.JButton btnLoad1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
