@@ -357,7 +357,7 @@ public class frmAsignacion extends javax.swing.JDialog {
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         try {
             //String user1=loginSesion.user;
-            String querry=("INSERT INTO pedidosempleado (estatus, tiempoEstimado, numeroEmpleado, idArreglo, user,comision) values(?,?,?,?,?,?)");
+            String querry=("INSERT INTO pedidosempleado (estatus, tiempoEstimado, numeroEmpleado, idArreglo, user,comision1) values(?,?,?,?,?,?)");
             Connection conn = MySQLConection.getConnection();
             PreparedStatement ps = conn.prepareStatement(querry);
             String estatus="asignado";
