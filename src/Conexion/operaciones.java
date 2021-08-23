@@ -23,9 +23,9 @@ public class operaciones {
            ResultSet rs= ps.executeQuery();
            
             while (rs.next()) {                
-                //loginSesion.numEmpleado=rs.getInt("numEmpleado");
+                
                 loginSesion.user=rs.getString("user");
-                //loginSesion.pass=rs.getString("pass");
+             
                 loginSesion.puesto=rs.getString("puesto");
                
                 return true;
